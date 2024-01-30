@@ -184,6 +184,9 @@ class VerticalStackInCard extends HTMLElement {
     if (typeof card.getCardSize === "function") {
       return card.getCardSize();
     }
+    if (customElements.get(card.localName)) {
+      return 1;
+    }
     return customElements
       .whenDefined(card.localName)
       .then(() => this._computeCardSize(card))
